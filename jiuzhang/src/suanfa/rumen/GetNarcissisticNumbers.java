@@ -35,27 +35,46 @@ public class GetNarcissisticNumbers {
             return result;
         }
         
-        for(int i = (int) Math.pow(10, 2); i <= Math.pow(10, n+1) - 1; i++) {
-            if(isTheNumber(i, n)){
+        for(int i = (int) Math.pow(10, n-1); i <= (int)Math.pow(10, n) - 1; i++) {
+        	int power = getPowerValue(i);
+            if(isTheNumber(i, power)){
                 result.add(i);
             }
         }
         
         return result;
     }
-    
+    public static int getPowerValue(int number) {
+        int count = 0;
+        
+        while(number != 0) {
+        	count++;
+            number = number/10;
+        }
+        
+        return count;
+    }
     public static boolean isTheNumber(int number, int n) {
         int total = 0;
+        int originalNumber = number;
+        
         while(number != 0) {
             int temp =  number%10;
             number = number/10;
             total += Math.pow(temp, n);
         }
-        return number == total;
+        if(originalNumber == total) {
+        	System.out.println("Ë®ÏÉ»¨Êı×Ö:" + originalNumber + ":" + total);
+        }
+        
+        return originalNumber == total;
     }
     
     public static void main(String[] args) {
-        System.out.println(getNarcissisticNumbers(3).contains(153));
+       getNarcissisticNumbers(4);
+//       System.out.println((int)Math.pow(10, 5));
+//       System.out.println((int)Math.pow(10, 5)-1);
+       
     }
 
 }
