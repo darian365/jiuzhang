@@ -2,11 +2,16 @@ package suanfa.rumen;
 
 public class LowercaseToUppercase {
 
+    /**
+     * 145. 大小写转换
+                        将一个字符由小写字母转换为大写字母
+                        
+                        样例
+        a -> A
+        
+        b -> B
+     */
 	public static char covert(char a) {
-		if(a < 97 && a > 122) {
-			return '0';
-		}
-		
 		return (char)(a - 32);
 	}
 	
