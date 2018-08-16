@@ -4,16 +4,35 @@ public class ListNodeInsert {
 
 	static ListNode insertNode(ListNode head, int val) {
 		
-        ListNode dummy = new ListNode(0);
+        ListNode dummy = new ListNode(Integer.MIN_VALUE);
         dummy.next = head;
         ListNode curr = dummy;
-        while(curr.next != null && curr.next.val < val) {
-        	curr = curr.next;
+        if(head == null) {
+            return new ListNode(val);
+        }else {
+            while(curr.next != null && curr.next.val < val) {
+            	curr = curr.next;
+            }
+            ListNode node = new ListNode(val);
+            node.next = curr.next;
+            curr.next = node;
         }
-        ListNode node = new ListNode(val);
-        node.next = curr.next;
-        curr.next = node;
-        return head;
+        return dummy.next;
+        
+        
+	    /*
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy;
+        
+        while (cur.next != null && cur.next.val <= val) {
+            cur = cur.next;
+        }
+        ListNode newNode = new ListNode(val);
+        newNode.next = cur.next;
+        cur.next = newNode;
+        return dummy.next;
+        */
 	}
 	
 	public static void main(String[] args) {
@@ -26,7 +45,8 @@ public class ListNodeInsert {
 //		node1.next = node2;
 //		node2.next = node3;
 		
-		insertNode(head, 1);
+		head = insertNode(head, 1);
+		head = insertNode(head, 0);
 		
 		while(head !=null ) {
 			System.out.println(head.val);
